@@ -1,5 +1,5 @@
 package com.ted.tickets.entity;
 
 public enum TicketValidationMethod {
-    Qr_SCAN , MANUAL
+    QR_SCAN , MANUAL
 }
