@@ -31,6 +31,13 @@ public class TicketType {
     @Column(name = "price",nullable = false)
     private Double price;
 
+    @Column(name = "description")
+    private String description;
+
+    @CreatedDate
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
     @Column(name = "total_available")
     private Integer totalAvailable;
 
