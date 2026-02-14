@@ -34,10 +34,6 @@ public class TicketType {
     @Column(name = "description")
     private String description;
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
-
     @Column(name = "total_available")
     private Integer totalAvailable;
 
