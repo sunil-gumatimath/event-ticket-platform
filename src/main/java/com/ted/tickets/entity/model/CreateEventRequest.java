@@ -1,7 +1,6 @@
-package com.ted.tickets.dto.request;
+package com.ted.tickets.entity.model;
 
 import com.ted.tickets.entity.EventStatusEnum;
-import com.ted.tickets.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,6 @@ public class CreateEventRequest {
     private LocalDateTime salesStart;
     private LocalDateTime salesEnd;
     private EventStatusEnum status;
-    private User organizer;
 
     private List<CreateTicketTypeRequest>  ticketTypes = new ArrayList<>();
 
