@@ -1,4 +1,4 @@
-package com.ted.tickets.entity.dto;
+package com.ted.tickets.dto.request;
 
 import com.ted.tickets.entity.EventStatusEnum;
 import jakarta.validation.Valid;

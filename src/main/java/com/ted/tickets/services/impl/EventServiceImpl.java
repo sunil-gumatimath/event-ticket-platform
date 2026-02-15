@@ -1,6 +1,6 @@
 package com.ted.tickets.services.impl;
 
-import com.ted.tickets.entity.model.CreateEventRequest;
+import com.ted.tickets.domain.model.CreateEventRequest;
 import com.ted.tickets.entity.Event;
 import com.ted.tickets.entity.TicketType;
 import com.ted.tickets.entity.User;

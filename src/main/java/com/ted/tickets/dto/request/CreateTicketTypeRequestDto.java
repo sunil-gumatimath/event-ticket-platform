@@ -1,4 +1,4 @@
-package com.ted.tickets.entity.dto;
+package com.ted.tickets.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

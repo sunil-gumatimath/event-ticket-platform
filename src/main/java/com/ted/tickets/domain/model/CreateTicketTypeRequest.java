@@ -1,4 +1,4 @@
-package com.ted.tickets.entity.model;
+package com.ted.tickets.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

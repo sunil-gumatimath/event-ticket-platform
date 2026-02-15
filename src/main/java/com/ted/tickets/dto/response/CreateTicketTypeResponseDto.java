@@ -1,4 +1,4 @@
-package com.ted.tickets.entity.dto;
+package com.ted.tickets.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

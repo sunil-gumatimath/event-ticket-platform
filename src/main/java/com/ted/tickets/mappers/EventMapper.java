@@ -1,11 +1,11 @@
 package com.ted.tickets.mappers;
 
 import com.ted.tickets.entity.Event;
-import com.ted.tickets.entity.dto.CreateEventRequestDto;
-import com.ted.tickets.entity.dto.CreateEventResponseDto;
-import com.ted.tickets.entity.dto.CreateTicketTypeRequestDto;
-import com.ted.tickets.entity.model.CreateEventRequest;
-import com.ted.tickets.entity.model.CreateTicketTypeRequest;
+import com.ted.tickets.dto.request.CreateEventRequestDto;
+import com.ted.tickets.dto.request.CreateTicketTypeRequestDto;
+import com.ted.tickets.dto.response.CreateEventResponseDto;
+import com.ted.tickets.domain.model.CreateEventRequest;
+import com.ted.tickets.domain.model.CreateTicketTypeRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
