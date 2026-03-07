@@ -1,0 +1,72 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### OS Files ###
+.DS_Store
+Thumbs.db
+
+### Logs ###
+*.log
+logs/
+
+### Environment & Secrets ###
+.env
+.env.*
+!.env.example
+*.properties.local
+application-local.properties
+application-local.yml
+application-dev.properties
+application-dev.yml
+
+### H2 Database ###
+*.db
+*.mv.db
+*.trace.db
+
+### Docker ###
+docker-compose.override.yml
+
+### Maven ###
+.mvn/wrapper/maven-wrapper.jar
+dependency-reduced-pom.xml
+buildNumber.properties
+
+### Application ###
+*.pid
+*.seed
+*.pid.lock
+
+### Temporary Files ###
+build-java21.bat
