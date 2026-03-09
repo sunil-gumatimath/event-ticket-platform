@@ -1,11 +1,9 @@
 package com.ted.tickets.mappers;
 
-import com.ted.tickets.dto.response.ListEventResponseDto;
-import com.ted.tickets.dto.response.ListEventTicketTypeResponseDto;
+import com.ted.tickets.dto.response.*;
 import com.ted.tickets.entity.Event;
 import com.ted.tickets.dto.request.CreateEventRequestDto;
 import com.ted.tickets.dto.request.CreateTicketTypeRequestDto;
-import com.ted.tickets.dto.response.CreateEventResponseDto;
 import com.ted.tickets.domain.model.CreateEventRequest;
 import com.ted.tickets.domain.model.CreateTicketTypeRequest;
 import com.ted.tickets.entity.TicketType;
@@ -25,4 +23,7 @@ public interface EventMapper {
 
     ListEventResponseDto toListEventResponseDto (Event event);
 
+    GetEventTicketTypesResponseDto toGetEventDetailsTicketTypesResponseDto(TicketType ticketType);
+
+    GetEventDetailsResponseDto toGetEventDetailsResponseDto(Event event);
 }
