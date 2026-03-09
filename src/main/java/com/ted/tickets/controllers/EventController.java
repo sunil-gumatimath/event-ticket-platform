@@ -3,6 +3,7 @@ package com.ted.tickets.controllers;
 import com.ted.tickets.domain.model.CreateEventRequest;
 import com.ted.tickets.dto.request.CreateEventRequestDto;
 import com.ted.tickets.dto.response.CreateEventResponseDto;
+import com.ted.tickets.dto.response.GetEventDetailsResponseDto;
 import com.ted.tickets.dto.response.ListEventResponseDto;
 import com.ted.tickets.entity.Event;
 import com.ted.tickets.mappers.EventMapper;
@@ -52,6 +53,19 @@ public class EventController {
                 events.map(eventMapper::toListEventResponseDto)
         );
     }
+
+    @GetMapping(path = "/{eventId}")
+    public ResponseEntity<GetEventDetailsResponseDto> getEvent(
+            @AuthenticationPrincipal Jwt jwt,
+            @PathVariable UUID eventId
+    ){
+        UUID userid =  parseUserId(jwt);
+        return eventService.getEventForOrganizer(userid, eventId)
+                .map(eventMapper::toGetEventDetailsResponseDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 
     private UUID parseUserId(Jwt jwt) {
         return UUID.fromString(jwt.getSubject());
