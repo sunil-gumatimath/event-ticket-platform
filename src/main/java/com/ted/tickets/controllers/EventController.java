@@ -1,10 +1,14 @@
 package com.ted.tickets.controllers;
 
+import com.sun.jdi.request.EventRequest;
 import com.ted.tickets.domain.model.CreateEventRequest;
+import com.ted.tickets.domain.model.UpdateEventRequest;
 import com.ted.tickets.dto.request.CreateEventRequestDto;
+import com.ted.tickets.dto.request.UpdateEventRequestDto;
 import com.ted.tickets.dto.response.CreateEventResponseDto;
 import com.ted.tickets.dto.response.GetEventDetailsResponseDto;
 import com.ted.tickets.dto.response.ListEventResponseDto;
+import com.ted.tickets.dto.response.UpdateEventResponseDto;
 import com.ted.tickets.entity.Event;
 import com.ted.tickets.mappers.EventMapper;
 import com.ted.tickets.services.EventService;
@@ -29,11 +33,28 @@ public class EventController {
     private final EventMapper eventMapper;
     private final EventService eventService;
 
+    @PutMapping(path = "/{eventId}")
+    public ResponseEntity<UpdateEventResponseDto> updateEvent(
+            @AuthenticationPrincipal Jwt jwt,
+            @PathVariable UUID eventId,
+            @Valid @RequestBody UpdateEventRequestDto updateEventRequestDto) {
+        UpdateEventRequest updateEventRequest = eventMapper.fromDto(updateEventRequestDto);
+        UUID userId = parseUserId(jwt);
+
+        Event updateEvent = eventService.updateEventForOrganizer(
+                userId, eventId ,updateEventRequest
+        );
+
+        UpdateEventResponseDto updateEventResponseDto = eventMapper.toUpdateEventResponseDto(updateEvent);
+        return ResponseEntity.ok(updateEventResponseDto);
+
+    }
+
     @PostMapping
     public ResponseEntity<CreateEventResponseDto> createEvent(
             @AuthenticationPrincipal Jwt jwt,
             @Valid @RequestBody CreateEventRequestDto createEventRequestDto
-            ) {
+    ) {
         CreateEventRequest createEventRequest = eventMapper.fromDto(createEventRequestDto);
         UUID userId = parseUserId(jwt);
 

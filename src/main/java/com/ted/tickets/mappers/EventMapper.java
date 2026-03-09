@@ -1,5 +1,9 @@
 package com.ted.tickets.mappers;
 
+import com.ted.tickets.domain.model.UpdateEventRequest;
+import com.ted.tickets.domain.model.UpdateTicketTypeRequest;
+import com.ted.tickets.dto.request.UpdateEventRequestDto;
+import com.ted.tickets.dto.request.UpdateTicketTypeRequestDto;
 import com.ted.tickets.dto.response.*;
 import com.ted.tickets.entity.Event;
 import com.ted.tickets.dto.request.CreateEventRequestDto;
@@ -26,4 +30,12 @@ public interface EventMapper {
     GetEventTicketTypesResponseDto toGetEventDetailsTicketTypesResponseDto(TicketType ticketType);
 
     GetEventDetailsResponseDto toGetEventDetailsResponseDto(Event event);
+
+    UpdateTicketTypeRequest fromDto(UpdateTicketTypeRequestDto dto);
+
+    UpdateEventRequest fromDto(UpdateEventRequestDto dto);
+
+    UpdateTicketTypeResponseDto toUpdateTicketTypeResponseDto(TicketType ticketType);
+
+    UpdateEventResponseDto toUpdateEventResponseDto(Event event);
 }
