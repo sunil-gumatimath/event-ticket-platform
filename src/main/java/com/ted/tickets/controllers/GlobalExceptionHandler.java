@@ -1,5 +1,8 @@
 package com.ted.tickets.controllers;
 
+import com.ted.tickets.exceptions.EventNotFoundException;
+import com.ted.tickets.exceptions.EventUpdateException;
+import com.ted.tickets.exceptions.TicketTypeNotFoundException;
 import com.ted.tickets.exceptions.UserNotFoundException;
 import com.ted.tickets.utility.ErrorDto;
 import jakarta.validation.ConstraintViolationException;
@@ -17,6 +20,31 @@ import java.util.List;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(EventUpdateException.class )
+    public ResponseEntity<ErrorDto> handleEventUpdateException(EventUpdateException ex) {
+        log.error("Caught EventUpdateException", ex);
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setError("Unable to update event");
+        return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(TicketTypeNotFoundException.class )
+    public ResponseEntity<ErrorDto> handleTicketTypeNotFoundException(TicketTypeNotFoundException ex) {
+        log.error("Caught TicketTypeNotFoundException", ex);
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setError("Ticket Type Not Found");
+        return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EventNotFoundException.class )
+    public ResponseEntity<ErrorDto> handleEventNotFoundException(EventNotFoundException ex) {
+        log.error("Caught EventNotFoundException", ex);
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setError("Event Not Found");
+        return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+    }
+
 
     @ExceptionHandler(UserNotFoundException.class )
     public ResponseEntity<ErrorDto> handleUserNotFoundException(UserNotFoundException ex) {
@@ -70,4 +98,6 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(errorDto, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
 }
