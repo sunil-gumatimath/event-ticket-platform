@@ -32,18 +32,6 @@ public class EventServiceImpl implements EventService {
                 ()-> new UserNotFoundException(String.format("User not found with id " + organizerId))
         );
 
-        List<TicketType> ticketTypes = event.getTicketTypes().stream().map(
-                ticketType -> {
-                    TicketType ticketTypeToCreate = new TicketType();
-                    ticketTypeToCreate.setName(ticketType.getName());
-                    ticketTypeToCreate.setPrice(ticketType.getPrice());
-                    ticketTypeToCreate.setDescription(ticketType.getDescription());
-                    ticketTypeToCreate.setTotalAvailable(ticketType.getTotalAvailable());
-
-                    return ticketTypeToCreate;
-
-                }).toList();
-
         Event eventToCreate = new Event();
         eventToCreate.setName(event.getName());
         eventToCreate.setStart(event.getStart());
@@ -53,6 +41,20 @@ public class EventServiceImpl implements EventService {
         eventToCreate.setSalesEnd(event.getSalesEnd());
         eventToCreate.setStatus(event.getStatus());
         eventToCreate.setOrganizer(organizer);
+
+        List<TicketType> ticketTypes = event.getTicketTypes().stream().map(
+                ticketType -> {
+                    TicketType ticketTypeToCreate = new TicketType();
+                    ticketTypeToCreate.setName(ticketType.getName());
+                    ticketTypeToCreate.setPrice(ticketType.getPrice());
+                    ticketTypeToCreate.setDescription(ticketType.getDescription());
+                    ticketTypeToCreate.setTotalAvailable(ticketType.getTotalAvailable());
+                    ticketTypeToCreate.setEvent(eventToCreate); // Link back to event
+
+                    return ticketTypeToCreate;
+
+                }).toList();
+
         eventToCreate.setTicketTypes(ticketTypes);
 
         return eventRepository.save(eventToCreate);
