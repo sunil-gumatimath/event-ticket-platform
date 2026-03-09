@@ -19,7 +19,7 @@ Event ticket platform for booking and managing events with secure QR code valida
 ## Features
 
 - **User Management**: Auto-provisioning of users from Keycloak JWT tokens. Supports Organizers, Attendees, and Staff roles.
-- **Event Management**: Create and manage events with schedules, venues, sales periods, and lifecycle statuses (Draft, Published, Cancelled, Completed).
+- **Event Management**: Create, view, update, and delete events with schedules, venues, sales periods, and lifecycle statuses (Draft, Published, Cancelled, Completed). Role-based access ensures organizers can only manage their own events.
 - **Ticketing**:
     - Multiple ticket types per event (VIP, General, etc.) with pricing and availability.
     - Ticket purchasing and issuance.
@@ -37,6 +37,10 @@ com.ted.tickets
 │   ├── SecurityConfig               # OAuth2 resource server, filter chain
 │   └── JpaConfiguration             # JPA auditing (@CreatedDate, @LastModifiedDate)
 │
+├── controllers/                     # REST API Controllers
+│   ├── EventController              # Event-related endpoints
+│   └── GlobalExceptionHandler       # Centralized exception handling
+│
 ├── entity/                          # JPA entities and enums
 │   ├── Event                        # Core event entity
 │   ├── EventStatusEnum              # DRAFT, PUBLISHED, CANCELLED, COMPLETED
@@ -53,18 +57,29 @@ com.ted.tickets
 ├── dto/                             # Data Transfer Objects (API layer)
 │   ├── request/                     # Incoming request payloads
 │   │   ├── CreateEventRequestDto
-│   │   └── CreateTicketTypeRequestDto
+│   │   ├── UpdateEventRequestDto
+│   │   ├── CreateTicketTypeRequestDto
+│   │   └── UpdateTicketTypeRequestDto
 │   └── response/                    # Outgoing response payloads
 │       ├── CreateEventResponseDto
-│       └── CreateTicketTypeResponseDto
+│       ├── UpdateEventResponseDto
+│       ├── ListEventResponseDto
+│       ├── GetEventDetailsResponseDto
+│       ├── CreateTicketTypeResponseDto
+│       └── UpdateTicketTypeResponseDto
 │
 ├── domain/                          # Internal domain models
 │   └── model/                       # Service-layer models (no validation)
 │       ├── CreateEventRequest
-│       └── CreateTicketTypeRequest
+│       ├── UpdateEventRequest
+│       ├── CreateTicketTypeRequest
+│       └── UpdateTicketTypeRequest
 │
 ├── exceptions/                      # Custom exception hierarchy
 │   ├── EventTicketException         # Base runtime exception
+│   ├── EventNotFoundException
+│   ├── EventUpdateException
+│   ├── TicketTypeNotFoundException
 │   └── UserNotFoundException        # Thrown when user lookup fails
 │
 ├── filters/                         # Servlet filters
@@ -81,6 +96,9 @@ com.ted.tickets
 │   ├── EventService                 # Service interface
 │   └── impl/
 │       └── EventServiceImpl         # Service implementation
+│
+├── utility/                         # Utility classes
+│   └── ErrorDto                     # Standardized error response format
 │
 └── TicketsApplication               # Spring Boot entry point
 ```
