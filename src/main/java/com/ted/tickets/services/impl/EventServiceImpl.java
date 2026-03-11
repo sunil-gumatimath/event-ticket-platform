@@ -4,6 +4,7 @@ import com.ted.tickets.domain.model.CreateEventRequest;
 import com.ted.tickets.domain.model.UpdateEventRequest;
 import com.ted.tickets.domain.model.UpdateTicketTypeRequest;
 import com.ted.tickets.entity.Event;
+import com.ted.tickets.entity.EventStatusEnum;
 import com.ted.tickets.entity.TicketType;
 import com.ted.tickets.entity.User;
 import com.ted.tickets.exceptions.EventNotFoundException;
@@ -144,6 +145,11 @@ public class EventServiceImpl implements EventService {
     @Transactional
     public void deleteEventForOrganizer(UUID organizerId, UUID id) {
         getEventForOrganizer(organizerId, id).ifPresent(eventRepository::delete);
+    }
+
+    @Override
+    public Page<Event> listPublishedEvents(Pageable pageable) {
+        return eventRepository.findByStatus(EventStatusEnum.PUBLISHED, pageable);
     }
 
 }
