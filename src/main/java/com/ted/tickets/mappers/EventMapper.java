@@ -11,7 +11,6 @@ import com.ted.tickets.dto.request.CreateTicketTypeRequestDto;
 import com.ted.tickets.domain.model.CreateEventRequest;
 import com.ted.tickets.domain.model.CreateTicketTypeRequest;
 import com.ted.tickets.entity.TicketType;
-import jdk.jfr.EventType;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -42,7 +41,7 @@ public interface EventMapper {
 
     ListPublishedEventResponseDto  toListPublishedEventResponseDto(Event event);
 
-    GetPublishedEventTicketTypesResponseDto toGetPublishedEventTicketTypesResponseDto(EventType eventType);
+    GetPublishedEventTicketTypesResponseDto toGetPublishedEventTicketTypesResponseDto(TicketType ticketType);
 
     GetPublishedEventDetailsResponseDto toGetPublishedEventDetailsResponseDto(Event event);
 }
